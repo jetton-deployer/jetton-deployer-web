@@ -294,12 +294,12 @@ class JettonDeployController {
       [s in JettonMetaDataKeys]?: string | undefined;
     },
     connection: TonConnectUI,
-    walltAddress: string,
+    walletAddress: string,
   ) {
     const tc = await getClient();
     const waiter = await waitForSeqno(
       tc.openWalletFromAddress({
-        source: Address.parse(walltAddress),
+        source: Address.parse(walletAddress),
       }),
     );
 

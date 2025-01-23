@@ -1,4 +1,4 @@
-import { Box, Drawer, IconButton, styled } from "@mui/material";
+import { Drawer, IconButton, styled } from "@mui/material";
 import githubIcon from "assets/icons/github-logo.svg";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { AppLogo } from "components/appLogo";

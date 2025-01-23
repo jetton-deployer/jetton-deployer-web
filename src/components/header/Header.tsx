@@ -56,7 +56,7 @@ export const Header = () => {
                 Enter an existing Jetton contract address.
                 <HeaderExampleLink variant="body2" onClick={() => setExample(EXAMPLE_ADDRESS)}>
                   {" "}
-                  example
+                  Use example.
                 </HeaderExampleLink>
               </HeaderExampleText>
             </HeaderExampleTextWrapper>

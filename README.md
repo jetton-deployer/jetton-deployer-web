@@ -5,15 +5,17 @@ An open source Jetton deployer webapp, based on [jetton contracts starter templa
 ## How to use
 
 Instructions:
-Make sure you have a TON wallet with at least 0.25 TON balance. Supported wallets include TonHub and Chrome Extension.
+Make sure you have a TON wallet with at least 0.25 TON balance.
 
 Use your web browser to open the site of the deploy form: https://minter.ton.org
+
+To use the Testnet version open this link: https://minter.ton.org?testnet=true
 
 > Safety Notice: The form is based on this repo and served from GitHub Pages
 
 Click the "Connect Wallet" button to connect your wallet.
 
-Fill in the information about your Jetton in the form - choose a name, ticker and image URI.
+Fill in the information about your Jetton in the form - choose a name, ticker and image URL.
 
 Deploy and approve the deploy transaction in your wallet.
 

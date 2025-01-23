@@ -38,7 +38,7 @@ const RowActionsButton = styled(Box)({
     padding: "0px 10px",
     fontSize: 13,
     fontWeight: 700,
-    background: "#0088CC",
+    background: "#0098EA",
     color: "#fff",
     borderRadius: 24,
     "&:hover": {

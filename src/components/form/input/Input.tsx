@@ -109,7 +109,7 @@ export function Input({
             variant="body2"
             onClick={() => onExampleClick()}>
             {" "}
-            example
+            Use example.
           </Typography>
         )}
       </FieldDescription>

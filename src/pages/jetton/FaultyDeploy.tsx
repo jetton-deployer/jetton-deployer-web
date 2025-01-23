@@ -21,7 +21,7 @@ function FaultyDeploy() {
     jettonImage,
   } = useJettonStore();
   const [isLoading, setIsLoading] = useState(false);
-  const [tonconnect] = useTonConnectUI();
+  const [tonConnectUI] = useTonConnectUI();
   const address = useTonAddress();
 
   const onSubmit = async () => {
@@ -38,7 +38,7 @@ function FaultyDeploy() {
           description,
           image: jettonImage,
         },
-        tonconnect,
+        tonConnectUI,
         address,
       );
       await getJettonDetails();

@@ -1,7 +1,6 @@
-import BN from "bn.js";
-import { Address, beginCell, Cell, toNano, TonClient, Wallet } from "ton";
+import { Address, beginCell, toNano, TonClient, Wallet } from "ton";
 import { JettonDeployParams, JETTON_DEPLOY_GAS } from "./deploy-controller";
-import { initData, JettonMetaDataKeys, JETTON_MINTER_CODE, mintBody } from "./jetton-minter";
+import { initData, JETTON_MINTER_CODE, mintBody } from "./jetton-minter";
 
 export async function sleep(time: number) {
   return new Promise((resolve) => {

@@ -8,13 +8,7 @@ import { ContractDeployer } from "lib/contract-deployer";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { ROUTES } from "consts";
 import useNotification from "hooks/useNotification";
-import {
-  FormWrapper,
-  ScreenHeading,
-  StyledDescription,
-  StyledTxLoaderContent,
-  SubHeadingWrapper,
-} from "./styles";
+import { FormWrapper, ScreenHeading, StyledDescription, SubHeadingWrapper } from "./styles";
 import { Screen, ScreenContent } from "components/Screen";
 import analytics, { AnalyticsAction, AnalyticsCategory } from "services/analytics";
 import { getUrlParam, toDecimalsBN } from "utils";
@@ -39,12 +33,12 @@ async function fetchDecimalsOffchain(url: string): Promise<{ decimals?: string }
 function DeployerPage() {
   const { showNotification } = useNotification();
   const walletAddress = useTonAddress();
-  const [tonconnect] = useTonConnectUI();
+  const [tonConnectUI] = useTonConnectUI();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigatePreserveQuery();
 
   async function deployContract(data: any) {
-    if (!walletAddress || !tonconnect) {
+    if (!walletAddress || !tonConnectUI) {
       throw new Error("Wallet not connected");
     }
 
@@ -89,7 +83,7 @@ function DeployerPage() {
     }
 
     try {
-      const result = await jettonDeployController.createJetton(params, tonconnect, walletAddress);
+      const result = await jettonDeployController.createJetton(params, tonConnectUI, walletAddress);
       analytics.sendEvent(
         AnalyticsCategory.DEPLOYER_PAGE,
         AnalyticsAction.DEPLOY,
@@ -170,7 +164,7 @@ function Description() {
         </Link>{" "}
         for{" "}
         <Link target="_blank" href="https://ton.org">
-          TON blockchain
+          TON Blockchain
         </Link>
         . This free educational tool allows you to deploy your own Jetton to mainnet in one click.
         You will need at least 0.25 TON for deployment fees. <br />
@@ -204,6 +198,12 @@ function Description() {
           this
         </Link>{" "}
         to understand why.
+        <Spacer />
+        Learn more about other token-minting solutions in our{" "}
+        <Link target="_blank" href="https://blog.ton.org/history-of-mass-minting-on-ton">
+          article
+        </Link>
+        .
       </Typography>
       <GithubButton />
     </StyledDescription>

@@ -9,7 +9,7 @@ declare module "@mui/material" {
 let theme = createTheme({
   palette: {
     primary: {
-      main: "#0088CC",
+      main: "#0098EA",
       contrastText: "#fff",
     },
 

@@ -58,7 +58,7 @@ export const LogoAlertPopup = ({
             onValidate();
             close();
           }}
-          background="#0088CC">
+          background="#0098EA">
           {isUpdateText ? "Update Metadata" : "Deploy"}
         </AppButton>
       </CenteringWrapper>

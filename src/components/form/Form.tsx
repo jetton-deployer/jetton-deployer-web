@@ -185,8 +185,8 @@ export function Form({
             fontWeight={700}
             type="button"
             onClick={onConnect}
-            background="#0088CC">
-            Connect wallet
+            background="#0098EA">
+            Connect Wallet
           </AppButton>
         ) : (
           <CenteringWrapper sx={{ justifyContent: "center" }}>

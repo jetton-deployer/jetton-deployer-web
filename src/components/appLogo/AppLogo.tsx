@@ -14,7 +14,7 @@ export const AppLogo = () => {
         <img src={logo} alt="Logo" />
       </ImageWrapper>
       <Typography variant="h4">{APP_DISPLAY_NAME}</Typography>
-      {network === "testnet" && <Chip sx={{ ml: 1 }} label="testnet" />}
+      {network === "testnet" && <Chip sx={{ ml: 1 }} label="Testnet" />}
     </LogoWrapper>
   );
 };

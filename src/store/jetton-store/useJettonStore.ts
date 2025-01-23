@@ -31,9 +31,17 @@ function useJettonStore() {
       showNotification("Invalid jetton address in query param", "error", undefined, 5000);
     }
 
-    const address = queryAddress || connectedWalletAddress;
+    let address: Address | null = null;
+    try {
+      address = Address.parse(queryAddress || connectedWalletAddress);
+    } catch (error) {}
 
-    const isMyWallet = address ? address === connectedWalletAddress : false;
+    let userAddress: Address | null = null;
+    try {
+      userAddress = Address.parse(connectedWalletAddress);
+    } catch (error) {}
+
+    const isMyWallet = address && userAddress ? address.equals(userAddress) : false;
 
     reset();
 
@@ -52,7 +60,7 @@ function useJettonStore() {
 
       const result = await jettonDeployController.getJettonDetails(
         parsedJettonMaster,
-        address ? Address.parse(address) : zeroAddress(),
+        address ?? zeroAddress(),
       );
 
       if (!result) {
@@ -61,7 +69,8 @@ function useJettonStore() {
         return;
       }
       const _adminAddress = result.minter.admin?.toFriendly() ?? zeroAddress().toFriendly();
-      const admin = isMyWallet && _adminAddress === connectedWalletAddress;
+      const adminAddress = Address.parse(_adminAddress);
+      const admin = (isMyWallet && userAddress && adminAddress.equals(userAddress)) || false;
 
       let image: string | undefined;
 
@@ -106,15 +115,15 @@ function useJettonStore() {
           totalSupply: result.minter.totalSupply,
           name: result.minter.metadata.name,
           symbol: result.minter.metadata.symbol,
-          adminRevokedOwnership: _adminAddress === zeroAddress().toFriendly(),
+          adminRevokedOwnership: zeroAddress().equals(adminAddress),
           isAdmin: admin,
           decimals: result.minter.metadata.decimals || "9",
-          adminAddress: _adminAddress,
+          adminAddress: adminAddress.toFriendly({ urlSafe: true, bounceable: false }),
           balance: result.jettonWallet ? result.jettonWallet.balance : undefined,
           jettonWalletAddress: result.jettonWallet?.jWalletAddress?.toFriendly(),
           jettonMaster: jettonAddress,
           isMyWallet,
-          selectedWalletAddress: address,
+          selectedWalletAddress: address?.toFriendly({ urlSafe: true, bounceable: false }),
         };
       });
     } catch (error) {

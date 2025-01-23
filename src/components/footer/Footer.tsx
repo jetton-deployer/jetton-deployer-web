@@ -18,17 +18,21 @@ import telegramHovered from "assets/icons/telegram-hover.svg";
 import github from "assets/icons/github.svg";
 import orbsLogo from "assets/icons/orbs.svg";
 import githubHovered from "assets/icons/github-hover.svg";
-import { AppLogo } from "components/appLogo";
 import heart from "assets/icons/heart.svg";
 import { Outlet } from "react-router-dom";
+import { useNetwork } from "../../lib/hooks/useNetwork";
 
 export const Footer = () => {
+  const { network } = useNetwork();
+
+  let isTestnet = network === "testnet";
+  let switchNetworkText = isTestnet ? "Switch to Mainnet" : "Switch to Testnet";
+  let switchNetworkURL = isTestnet ? "/" : "/?testnet=true";
+
   return (
     <FooterWrapper>
       <SocialsWrapper>
-        <Box>
-          <AppLogo />
-        </Box>
+        <Box></Box>
         <SocialsContent>
           <HoverableIcon
             iconUrl={telegram}
@@ -45,13 +49,13 @@ export const Footer = () => {
       <Separator />
       <CredentialsWrapper>
         <FooterTextBoxLeft>
-          <Typography variant="body2">© 2023 TON Foundation</Typography>
+          <Typography variant="body2">© 2025 TON Foundation</Typography>
         </FooterTextBoxLeft>
         <ContributedWrapper>
           <Typography variant="body2" sx={{ display: "flex", alignItems: "center" }}>
             Contributed with
             <CenteringWrapper mx={0.4}>
-              <img src={heart} alt="Orbs logo" width={12} height={12} />
+              <img src={heart} alt="Love" width={12} height={12} />
             </CenteringWrapper>
             by
             <CenteringWrapper mx={0.4}>
@@ -66,8 +70,8 @@ export const Footer = () => {
           </Typography>
         </ContributedWrapper>
         <FooterTextBoxRight>
-          <FooterLink target="_blank" href="https://t.me/+YDnoBue1Dz81ZTMy">
-            <Typography variant="body2">Support</Typography>
+          <FooterLink target="_blank" href={switchNetworkURL}>
+            <Typography variant="body2">{switchNetworkText}</Typography>
           </FooterLink>
         </FooterTextBoxRight>
       </CredentialsWrapper>

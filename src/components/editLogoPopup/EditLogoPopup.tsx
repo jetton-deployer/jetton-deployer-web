@@ -89,7 +89,7 @@ export const EditLogoPopup = ({
               setLogoUrl(tempUrl);
               close();
             }}
-            background="#0088CC">
+            background="#0098EA">
             Save URL
           </AppButton>
         </Box>

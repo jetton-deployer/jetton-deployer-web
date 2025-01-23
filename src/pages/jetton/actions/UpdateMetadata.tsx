@@ -3,11 +3,8 @@ import { onchainFormSpec } from "pages/deployer/data";
 import { Form } from "components/form";
 import { JettonStoreState } from "store/jetton-store";
 import { jettonDeployController } from "lib/deploy-controller";
-import WalletConnection from "services/wallet-connection";
 import { Address } from "ton";
 import useNotification from "hooks/useNotification";
-import { useSetRecoilState } from "recoil";
-import { jettonActionsState } from "pages/jetton/actions/jettonActions";
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import { useState } from "react";
 
@@ -49,8 +46,8 @@ function UpdateMetadata({ setOpen }: UpdateMetadataProps) {
   const { isAdmin, getJettonDetails, jettonMaster } = store;
   const [actionInProgress, setActionInProgress] = useState(false);
   const { showNotification } = useNotification();
-  const [tonconnect] = useTonConnectUI();
-  const walltAddress = useTonAddress();
+  const [tonConnectUI] = useTonConnectUI();
+  const walletAddress = useTonAddress();
   if (!isAdmin) {
     return null;
   }
@@ -71,8 +68,8 @@ function UpdateMetadata({ setOpen }: UpdateMetadataProps) {
           image: values.tokenImage,
           decimals: parseInt(values.decimals).toFixed(0),
         },
-        tonconnect,
-        walltAddress,
+        tonConnectUI,
+        walletAddress,
       );
       await getJettonDetails();
       setOpen(false);

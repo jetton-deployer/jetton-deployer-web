@@ -85,12 +85,15 @@ const App = () => {
     resetJetton();
   }, [location.pathname]);
 
+  const isSandbox = window.location.search.includes("sandbox");
+  const isTestnet = window.location.search.includes("testnet");
+
   return (
     <AppWrapper>
       <EnvContext.Provider
         value={{
-          isSandbox: window.location.search.includes("sandbox"),
-          isTestnet: window.location.search.includes("testnet"),
+          isSandbox: isSandbox,
+          isTestnet: isTestnet,
         }}>
         <ScreensWrapper>
           <Routes>

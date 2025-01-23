@@ -8,8 +8,6 @@ import useJettonStore from "store/jetton-store/useJettonStore";
 import { AppButton } from "components/appButton";
 import { AppNumberInput } from "components/appInput";
 import { toDecimalsBN } from "utils";
-import { useRecoilState } from "recoil";
-import { jettonActionsState } from "pages/jetton/actions/jettonActions";
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 
 function BurnJettonsAction() {
@@ -26,7 +24,7 @@ function BurnJettonsAction() {
   } = useJettonStore();
   const { showNotification } = useNotification();
   const [actionInProgress, setActionInProgress] = useState(false);
-  const [tonconnect] = useTonConnectUI();
+  const [tonConnectUI] = useTonConnectUI();
   const walletAddress = useTonAddress();
   if (!balance || !isMyWallet) {
     return null;
@@ -58,7 +56,7 @@ function BurnJettonsAction() {
     try {
       setActionInProgress(true);
       await jettonDeployController.burnJettons(
-        tonconnect,
+        tonConnectUI,
         valueDecimals,
         jettonWalletAddress!,
         walletAddress,

@@ -1,5 +1,5 @@
 import BN from "bn.js";
-import { Address, beginCell, Cell, contractAddress, StateInit } from "ton";
+import { Address, Cell, contractAddress, StateInit } from "ton";
 import { SendTransactionRequest, TonConnectUI } from "@tonconnect/ui-react";
 
 interface ContractDeployDetails {
